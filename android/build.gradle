@@ -1,0 +1,57 @@
+// allprojects {
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+
+// rootProject.buildDir = "../build"
+// subprojects {
+//     project.buildDir = "${rootProject.buildDir}/${project.name}"
+// }
+// subprojects {
+//     project.evaluationDependsOn(":app")
+// }
+
+// tasks.register("clean", Delete) {
+//     delete rootProject.buildDir
+// }
+
+
+/////above is the orginal but after i added firebase it will be as that: /////////
+
+
+
+buildscript {
+     ext.kotlin_version = '1.9.23'
+  repositories {
+        google()  // 👈 THIS MUST COME FIRST
+        mavenCentral()
+    }   
+
+    dependencies {
+       
+       classpath 'com.android.tools.build:gradle:8.1.4'  // 👈 Updated to match Gradle 8.5
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath 'com.google.gms:google-services:4.4.2'
+            }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
